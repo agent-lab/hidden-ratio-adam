@@ -1,0 +1,82 @@
+## Minimal Adam-NSR config for the custom LLaMA-style 20M model.
+## Replace the data directory with local FineWeb .bin shards before launching.
+
+deterministic: False
+seed: 100
+
+trainset_bin_dir: "./data/fineweb10B_llama20m_tinyllama32k_bin"
+validset_bin_dir: "./data/fineweb10B_llama20m_tinyllama32k_bin"
+validset_path: null
+valid_tokens: null
+
+vocab_size: 32000
+seq_len: 2048
+sampler: "sequential"
+sampler_seed: null
+num_workers: 4
+
+eval: True
+eval_every_steps: 200
+eval_rank0_only: False
+
+model: "llama-20M"
+attn_implementation: "flash_attention_2"
+torch_compile: True
+tie_embeddings: False
+dropout: 0.0
+initializer_range: 0.02
+
+steps_budget: 2861
+micro_batch_size: 16
+grad_accumulation_steps: 16
+dtype: "bfloat16"
+
+optim: "adam_nsr"
+fused_optim: True
+lr: 3.e-3
+weight_decay: 0.0
+beta1: 0.90
+beta2: 0.90
+eps: 1.e-8
+grad_clip: 1.0
+
+y_max: 64.0
+moment1_dtype: "fp32"
+moment1_quant: "per_column"
+moment2_dtype: "fp32"
+pseudo_quantize_state_dtype: null
+nsr_compute_dtype: "fp32"
+skip_update_on_bad_y: False
+
+scheduler: "warmup_constant"
+warmup_steps: 512
+cooldown_steps: null
+lr_start: 0.0
+lr_end: null
+lr_end_pct: null
+
+log_every_steps: 1
+print_progress: True
+
+use_wandb: False
+wandb_entity: null
+wandb_project: "plainlm"
+wandb_dir: "./wandb"
+wandb_run_name: "llama20m_adam_nsr"
+exp_name: "llama20m_adam_nsr"
+out_dir: "./outputs"
+over_write: True
+
+resume: False
+resume_mode: null
+resume_step: null
+resume_exp_name: null
+resume_dir: null
+wandb_continuation_mode: "fresh"
+
+train_shard_start: 0
+train_shard_budget: null
+
+save_last_checkpoint: False
+save_intermediate_checkpoints: False
+save_every_steps: null

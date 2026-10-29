@@ -1,0 +1,15 @@
+Packaging validation — 2026-10-29
+PASS Python syntax: 377 source files.
+PASS YAML/TOML parsing: 62 YAML and 2 TOML files.
+PASS Bash syntax: both retained launch scripts.
+PASS Both post-training launch commands compose against bundled Hydra configs.
+PASS No unresolved absolute verl.* internal imports after pruning.
+PASS Pretraining and post-training wheels build; required modules/configs included.
+PASS Ordinary FP32, FP8 and zero-epsilon CPU optimizer checks; optimizer copies identical.
+PASS Internal-codebook refactor: 10 old/new optimizer comparisons, each 32 steps
+including old-checkpoint loading; parameters and state agree bit for bit.
+PASS CIFAR model construction and synthetic forward output shapes for both MLPs and ResNet18.
+PASS Release scan: no historical logs, weights, datasets, caches, private host paths or detected credential literals.
+
+No GPU training, dataset download, convergence reproduction or complete dependency
+installation was performed. Dependency bounds are not a historical environment lock.

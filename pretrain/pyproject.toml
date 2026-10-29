@@ -1,0 +1,48 @@
+[project]
+name = "plainLM"
+description = "Pretrain transformers on causal language modeling using PyTorch."
+authors = [
+    { name = "Submission package maintainers" }
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+version = "0.1.0"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "absl-py>=2.1.0",
+    "numpy>=2.3.4",
+    "PyYAML>=6.0.3",
+    "schedulefree>=1.4.1",
+    "torch>=2.6.0",
+    "transformers>=4.44.2",
+    "tqdm>=4.66.0",
+    "wandb>=0.22.2",
+    "huggingface-hub>=0.25.0",
+    "datasets>=4.7.0"
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["data", "data.datasets", "optim", "engine", "models"]
+py-modules = ["utils", "torch_utils", "checkpoint_utils"]
+
+[tool.ruff]
+line-length = 120
+indent-width = 2
+
+[tool.ruff.format]
+quote-style = "single"
+
+[tool.ruff.lint]
+extend-select = [
+    "BLE",      # disallow catch-all exceptions
+    "F",        # Pyflakes rules
+    "FA",       # Enforce from __future__ import annotations
+    "I",        # Isort rules
+    "ICN",      # Use common import conventions
+    "PLE",      # Pylint Errors
+    "TID",      # Some good import practices
+]

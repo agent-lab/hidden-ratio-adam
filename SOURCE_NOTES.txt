@@ -1,0 +1,33 @@
+Release v1 — 2026-10-29
+
+Core optimizer: derived from the archived submission; codebook defaults are
+encapsulated inside the optimizer. Recurrence and update arithmetic are unchanged.
+Archived source
+SHA256 09e585452775a84d03b7651b87f09d1b2e8da34fb45f52124e245de73276b6a0
+Identical copies: optimizer/adam_nsr.py, pretrain/optim/adam_nsr.py,
+posttrain/verl/utils/adam_nsr.py, cifar/adam_nsr.py.
+
+Isolated epsilon=0 optimizer: archived direct-cancellation implementation, with
+the same codebook encapsulation. Archived source
+SHA256 a283e0f0ce88110fefec5608499d3f52e51d0fa6f85fb90817b1ca5ec856f4ee
+Path: pretrain/optim/adam_nsr_eps0.py.
+
+Current release fingerprints are recorded in SHA256SUMS.
+
+Packaging edits:
+- The paper codebook is the internal default; examples no longer repeat its values.
+  Explicit custom tables and y_table=None legacy modes remain supported.
+- Relative default paths for CIFAR; model definitions and training loops preserved.
+- Added explicit adam_nsr_eps0 selection and one zero-epsilon pretraining YAML.
+- Corrected accidental Python==3.12.0 patch pin to >=3.12,<3.13 and included
+  pretraining support modules / data.datasets in packaging metadata.
+- ReMax example actor defaults to the verified Llama-3.2-1B-Instruct identity.
+- Post-training examples default to console logging, without shell command tracing.
+- Updated launch options to the bundled verl schema: reward.* namespace,
+  removal of unsupported use_importance_sampling / use_reward_loop options,
+  and explicit addition of the supported SFT chat-template-file option.
+- Retained upstream runtime, licenses and notices; removed development tooling,
+  unrelated examples, docs/tests and agent/editor metadata.
+- No large-beta update-first performance variant, raw logs, data or model weights.
+
+Scope: compact source release, not a frozen environment or per-run result archive.
